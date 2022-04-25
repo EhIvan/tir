@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-25T20:06:58.590Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="yv_L2cy4SMwVf3l3_TWn" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-25T20:56:47.707Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="D4SBpNTdqpZu8rZLjktP" version="17.4.6" type="github">
   <diagram id="_q33SbV-KLLzqtAGZ__H" name="Page-1">
-    <mxGraphModel dx="1673" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1775" dy="1639" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -53,13 +53,23 @@
           <mxGeometry x="343" y="360" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="HqeZ5SK1sk_XmQb17yH1-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="226" />
+              <mxPoint x="460" y="111" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="HqeZ5SK1sk_XmQb17yH1-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="HqeZ5SK1sk_XmQb17yH1-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-9">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="226" />
+              <mxPoint x="460" y="300" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="HqeZ5SK1sk_XmQb17yH1-1" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="490" y="196" width="40" height="60" as="geometry" />
@@ -70,17 +80,56 @@
         <mxCell id="HqeZ5SK1sk_XmQb17yH1-13" value="&lt;b&gt;Telegram Bot&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Запись на мероприятия.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Отмена записи.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Отказ в случае превышения максимального количества участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4. Просмотр результатов пары прошедших тренировок участника по сравнению с другими или усредненные результаты участника за период&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
           <mxGeometry x="23" y="500" width="207" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="HqeZ5SK1sk_XmQb17yH1-15" value="&lt;b&gt;WEB платформа&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Администрирование участников и тренеров.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Создание мероприятий.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Запись/отмена заявки на мероприятие.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4.&amp;nbsp;&lt;/span&gt;&lt;span&gt;формирование и просмотр результатов мероприятия в соответствии со стандартами.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;5. Просмотр количества доступных мест на мероприятии.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;6. Возможность просмотра статистики участника за весь период&amp;nbsp;ведения БД.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;7. Статистика в виде графиков для удобной оценки прогресса.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;8. Настрел?&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="264.5" y="500" width="207" height="280" as="geometry" />
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-15" value="&lt;b&gt;WEB платформа&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Администрирование участников и тренеров.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Создание мероприятий.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Запись/отмена заявки на мероприятие.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4. Корректировка участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;5.&amp;nbsp;&lt;/span&gt;&lt;span&gt;формирование и просмотр результатов мероприятия в соответствии со стандартами.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;6. Просмотр количества доступных мест на мероприятии.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;7. Возможность просмотра статистики участника за весь период&amp;nbsp;ведения БД.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;8. Статистика в виде графиков для удобной оценки прогресса.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;9. Настрел стрелка?&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="264.5" y="500" width="207" height="300" as="geometry" />
         </mxCell>
-        <mxCell id="HqeZ5SK1sk_XmQb17yH1-16" value="&lt;b&gt;Мобильное приложение&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1.&amp;nbsp;&lt;/span&gt;&lt;span&gt;Создание мероприятий.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Внесение результатов тренировки как ручным вводом, так и с возможностью прямого импорта результатов с таймера.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Запись/отмена заявки на мероприятие.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4. Просмотр количества доступных мест на мероприятии.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;5.&amp;nbsp;&lt;/span&gt;&lt;span&gt;Отказ в случае превышения максимального количества участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;7. Просмотр базовой статистики&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;8.&amp;nbsp; формирование и просмотр результатов мероприятия в соответствии со стандартами&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="500" y="500" width="207" height="280" as="geometry" />
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-16" value="&lt;b&gt;Мобильное приложение&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1.&amp;nbsp;&lt;/span&gt;&lt;span&gt;Создание мероприятий.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Работа только с подтвержденными участниками тренировки.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Внесение результатов тренировки как ручным вводом, так и с возможностью прямого импорта результатов с таймера.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4. Запись/отмена заявки на мероприятие.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;5. Корректировка участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;6. Просмотр количества доступных мест на мероприятии.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;7.&amp;nbsp;&lt;/span&gt;&lt;span&gt;Отказ в случае превышения максимального количества участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;8. Просмотр базовой статистики&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;9. Формирование и просмотр результатов мероприятия в соответствии со стандартами&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="500" y="500" width="207" height="330" as="geometry" />
         </mxCell>
-        <mxCell id="HqeZ5SK1sk_XmQb17yH1-18" value="&lt;b&gt;Серверная часть&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Полная поддержка функционала для различных видов интерфейса&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Формирования списка участников тренировки, подтвердивших свое участие для каждого сочетания: дата-тренер-место&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="23" y="810" width="207" height="280" as="geometry" />
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-21" value="Подумать потом" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=34;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="-130" width="240" height="640" as="geometry" />
         </mxCell>
-        <mxCell id="HqeZ5SK1sk_XmQb17yH1-19" value="&lt;b&gt;БД&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. хранение и обработка инфрмации для реализации требуемого функционала&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="264.5" y="810" width="207" height="280" as="geometry" />
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-23" value="Подумать еще о:" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;dashed=1;fontSize=12;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="23" y="870" width="687" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-24" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-23">
+          <mxGeometry y="30" width="687" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-25" value="1" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-24">
+          <mxGeometry width="57" height="30" as="geometry">
+            <mxRectangle width="57" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-26" value="Уведомления в случае появления места." style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-24">
+          <mxGeometry x="57" width="630" height="30" as="geometry">
+            <mxRectangle width="630" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-27" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-23">
+          <mxGeometry y="60" width="687" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-28" value="2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-27">
+          <mxGeometry width="57" height="30" as="geometry">
+            <mxRectangle width="57" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-29" value="Как учитывать класс стрелка (manual, open и т.д)." style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-27">
+          <mxGeometry x="57" width="630" height="30" as="geometry">
+            <mxRectangle width="630" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-30" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-23">
+          <mxGeometry y="90" width="687" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-31" value="3" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-30">
+          <mxGeometry width="57" height="30" as="geometry">
+            <mxRectangle width="57" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-32" value="Как учесть множество разных клубов." style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;dashed=1;fontSize=12;" vertex="1" parent="HqeZ5SK1sk_XmQb17yH1-30">
+          <mxGeometry x="57" width="630" height="30" as="geometry">
+            <mxRectangle width="630" height="30" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
