@@ -1,1 +1,79 @@
-<mxfile host="app.diagrams.net" modified="2022-04-25T18:56:35.292Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="ulIB5SwoDalvXpaREyMg" version="17.4.6" type="github"><diagram id="_q33SbV-KLLzqtAGZ__H" name="Page-1">7Vldc5s6EP01PCZjCYzxo7/SZm46k9u0k+ZRRjLoVrZcIcf4/vpKIIGo7DadekI805kMYc+uBNrds5aWIJyty3cCbfMPHBMWwAEug3AeQAgiCAP9N8CHGhnFBsgExcaoBR7o/8SAA4PuKCZFx1ByziTddsGUbzYklR0MCcH3XbMVZ92nblFGPOAhRcxHHymWeY0mcNTi7wnNcvtkEI9rzRpZY7OSIkeY7x0oXAThTHAu67t1OSNMO8/6pR53c0LbvJggG/mSAR839ONucXt19+nfDKVfpv/gEb0K61meEduZBQcwZmq+6YqradVby4NxRfxtx63iqqgCNVEGINqWrVLdZdX/+SCYAH2dDoM5CJJBdQ87iHnSUrijxjeO/aK6hg5SX2fO9dg8BlHOqJdhYdhZERR8t8FE+2eg1PucSvKwRanW7lU6KyyXa6YkoNdNGZtxxkU1NlytSJymCi+k4F+Jo8Gj8XKgJ0SMZhuFpSpCRCmnDC0Ju+cFlZR3FM9ESKqS7u4HgzXFWL9sYzAxU0q+bRbkpoDJCm1OSgcyKfGO8DWR4qBMjHZsstPQMxwaed8mO4gNljuJHlmCIkOwrJm6zUF1Y9LwN1ISeCk5nXuRq51uGQm7kVJM22q7dZnponS9Ynyf5kjIa4wkWqKCnIj2GfwJoq5D48R36DF/xmdw5+bD9nY/Z487sfo8f/rGFl9LcAU93xGsKpwRuZA5z/gGsUWLTru8aG3uuE67ysf/ESkPplyjneTdCCj/icMXV3jSk10PrTgvzeS1dDBSIVWUJrpsa3YwVBQ0tfANZXb6ekl6HSdroYEKvhMp+Yl77G8KEhmRP7ELj0ddEIYkfe6+x9lj6FPiE2FEJfdaoVNVeM9Z2DAiyepoYYvThCxXjf89UhyJwEmehEmXJ009cQsPfE2iDHslisONpw413gpRwhcSJeqTKP52xiHKI1n+GVHOkPYAvLW0jy8p7Svpngiq1q43Tj1xIfK5cHor0xcXIo8Lk/vbN0eAIRz2TICkHwJgP2MV6OTr66f16BJK/MhL66qu1+fCm+o6tSdFdWqE1TWyp8nmHNmcHS9+59Q/g4Dvxr9nDMc/40vg1djjVdWNmTl9mLqfk1iOKS7V2rljM3So2JAtcWhZm8W2EdQMT+zwiydkDPve0wHgufE1CFlS6ezplPTkaFo2asGS8Ywse+lJvtdNGXhTp0zwi1J5zugc2TOfrkO9hcffNFedbOj0nsfO/qHpZP/YnjQdSN1vfJBcVB8Zfl28SmK/gGgZU0FS0whW/tWl5BzlKhp0y9XoyBE0OVKtkt+vVkpsv29UOucrUbj4Dg==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-04-25T19:39:53.747Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="bjunUdfyANx3KT7KBano" version="17.4.6" type="github">
+  <diagram id="_q33SbV-KLLzqtAGZ__H" name="Page-1">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-7" value="Варианты интерфейсов" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="294.5" y="21" width="177" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="RniRuEI-LTQgacXBKd7i-3" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Сервер&lt;br&gt;Программа&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;labelPosition=center;verticalLabelPosition=middle;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="33" y="21" width="160" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="RniRuEI-LTQgacXBKd7i-1" value="BD" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="83" y="351" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="nMpIwDlWurfUDYqlEkx1-1" target="nMpIwDlWurfUDYqlEkx1-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-1" value="Telegram Bot" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="323" y="81" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="nMpIwDlWurfUDYqlEkx1-3" target="nMpIwDlWurfUDYqlEkx1-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-3" value="Telegram Web" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="53" y="81" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="1" source="nMpIwDlWurfUDYqlEkx1-4" target="RniRuEI-LTQgacXBKd7i-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-4" value="API" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="53" y="196" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;startArrow=classic;startFill=1;" parent="1" source="nMpIwDlWurfUDYqlEkx1-7" target="nMpIwDlWurfUDYqlEkx1-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-7" value="Web платформа" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="323" y="196" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="nMpIwDlWurfUDYqlEkx1-9" target="nMpIwDlWurfUDYqlEkx1-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-9" value="Мобильное приложение" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="323" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nMpIwDlWurfUDYqlEkx1-1" target="nMpIwDlWurfUDYqlEkx1-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="nMpIwDlWurfUDYqlEkx1-14" target="nMpIwDlWurfUDYqlEkx1-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nMpIwDlWurfUDYqlEkx1-14" value="Таймер" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;direction=south;" parent="1" vertex="1">
+          <mxGeometry x="343" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="HqeZ5SK1sk_XmQb17yH1-1" target="nMpIwDlWurfUDYqlEkx1-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-1" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="196" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-9" value="&lt;h1&gt;Основная идея&lt;/h1&gt;&lt;p&gt;Создать глобальный инструмент для стрелков, решающих следующие задачи:&lt;/p&gt;&lt;p&gt;1. Учет различный клубов, групп и тренеров. Состав людей на мероприятии.&lt;/p&gt;&lt;p&gt;2. Иметь возможность хранить и обрабатывать статистику (желательно, расширенную) по результатам тренировок за долгий период времени.&lt;/p&gt;&lt;p&gt;3. Непосредственная интеграция таймера через приложение в БД&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="21" width="260" height="269" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-13" value="&lt;b&gt;Telegram Bot&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Запись на мероприятия.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Отмена записи.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Отказ в случае превышения максимального количества участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;4. Просмотр результатов пары прошедших тренировок участника по сравнению с другими или усредненные результаты участника за период&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="23" y="500" width="207" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="HqeZ5SK1sk_XmQb17yH1-15" value="&lt;b&gt;WEB платформа&lt;br&gt;Основной функционал&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. Администрирование участников.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. Создание мероприятий&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;3. Запись/отмена заявки на мероприятие.&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="264.5" y="500" width="207" height="240" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
