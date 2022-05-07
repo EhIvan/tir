@@ -11,59 +11,87 @@ path = "C:\\Users\\79175\\Documents\\GitHub\\tir\\src\\tir_db\\tir_db.db"  # А�
 
 
 
-def get_name(message):  # получаем имя
-    global name
+def get_name(message):  # получаем имя вносим в БД имя и telegram_id, задаем вопрос про Фамилиюё
     name = message.text
     print("name=", name)
     print(message.from_user.id)
+    telegram_id = message.from_user.id
+    connection = create_connection(path)
+    registration_script = f"""
+            INSERT INTO User (telegram_id, name)
+            VALUES ("{telegram_id}", "{name}")
+    	    """
+    result = execute_insert_query(connection, registration_script)
+    print(result)
     surname = eholandbot.send_message(chat_id=message.chat.id, text='Какая у тебя фамилия?')
     eholandbot.register_next_step_handler(surname, get_surname)
 
 
 def get_surname(message):
-    global surname
     surname = message.text
-    print(message.from_user.id)
-    print("name=", name)
-    print("surname=", surname)
+    telegram_id = message.from_user.id
+    connection = create_connection(path)
+    registration_script = f"""
+            update user
+            SET
+	            surname="{surname}"
+            where telegram_id="{telegram_id}"
+    	    """
+    print(registration_script)
+    result = execute_insert_query(connection, registration_script)
+    print(result)
     mobile = eholandbot.send_message(chat_id=message.chat.id, text='Твой мобильный номер?')
     eholandbot.register_next_step_handler(mobile, get_mobile)
 
 
-def get_mobile (message):
-    global mobile
+def get_mobile(message):
     mobile = message.text
-    print(message.from_user.id)
-    print("name=", name)
-    print("surname=", surname)
-    print("mobile=", mobile)
-    car_info = eholandbot.send_message(chat_id=message.chat.id, text='информация о машине?')
+    #print(message.from_user.id)
+    telegram_id = message.from_user.id
+    connection = create_connection(path)
+    registration_script = f"""
+                update user
+                SET
+    	            mobile="{mobile}"
+                where telegram_id="{telegram_id}"
+        	    """
+    result = execute_insert_query(connection, registration_script)
+    print(result)
+    car_info = eholandbot.send_message(chat_id=message.chat.id, text='Введите марку и гос. номер ваших машин')
     eholandbot.register_next_step_handler(car_info, get_car_info)
 
 
 def get_car_info (message):
-    global car_info
     car_info = message.text
     print(message.from_user.id)
-    print("name=", name)
-    print("surname=", surname)
-    print("mobile=", mobile)
-    print("car_info=", car_info)
+    telegram_id = message.from_user.id
+    connection = create_connection(path)
+    registration_script = f"""
+                update user
+                SET
+    	            car_info="{car_info}"
+                where telegram_id="{telegram_id}"
+        	    """
+    result = execute_insert_query(connection, registration_script)
+    print(result)
     email = eholandbot.send_message(chat_id=message.chat.id, text='информация о почте?')
     eholandbot.register_next_step_handler(email, get_email)
 
 
 def get_email (message):
-    global email
     email = message.text
     print(message.from_user.id)
-    print("name=", name)
-    print("surname=", surname)
-    print("mobile=", mobile)
-    print("car_info=", car_info)
-    print("email=", email)
-    eholandbot.send_message(chat_id=message.chat.id, text='Подтвердить следующие данные для регистрации? \n' +name+ ', '
-                                                          +surname+ ', ' +mobile+ ', ' +car_info+ ', ' +email+ '\n Для продолжения нажмите ДА', reply_markup=keyboard_yes_no())
+    telegram_id = message.from_user.id
+    connection = create_connection(path)
+    registration_script = f"""
+                 update user
+                 SET
+     	            email="{email}"
+                 where telegram_id="{telegram_id}"
+         	    """
+    result = execute_insert_query(connection, registration_script)
+    print(result)
+    eholandbot.send_message(chat_id=message.chat.id, text='Подтвердить следующие данные для регистрации? \n''\n Для продолжения нажмите ДА', reply_markup=keyboard_yes_no())
 
 
 
@@ -79,8 +107,6 @@ def check_rank (user_id):  # Тянет из БД ранг стрелка: ад�
     return check_rank
 
 
-
-
 def create_connection(path):  # Подключение к БД
     connection = None
     try:
@@ -89,7 +115,6 @@ def create_connection(path):  # Подключение к БД
     except Error as e:
         print(f"The error '{e}' occurred")
     return connection
-
 
 
 def execute_read_query(connection, query):  # По идее, универсальная функция под SELECT
@@ -144,6 +169,8 @@ def keyboard_main(result):  # Первая клавиатура
     elif result == [('shooter',)]:
         keyboard.add(key_join_event, key_cancel_event, key_stat)
         keyboard.add(key_back)
+    elif result == [('new_bro',)]:
+        eholandbot.send_message(result.chat.id, "Проверка пользователя, обратитесь к вашему тренеру")
     else:
         keyboard.add(key_registration)
         keyboard.add(key_back)
@@ -199,11 +226,13 @@ def ping_back(callback_data):
         eholandbot.answer_callback_query(callback_data.id, 'Регистрируемся...')
         eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
         telegram_id = callback_data.from_user.id
+        print(telegram_id)
         connection = create_connection(path)
         registration_script = f"""
-        INSERT INTO
-        user (telegram_id, rank_id, mobile, name, surname, car_info, email)
-        VALUES ("{telegram_id}", 4, "{mobile}", "{name}", "{surname}", "{car_info}", "{email}")
+        UPDATE User 
+        SET 
+	    rank_id = 4 
+	    WHERE telegram_id="{telegram_id}"
         """
         print(registration_script)
         result = execute_insert_query(connection, registration_script)
@@ -218,4 +247,4 @@ def ping_back(callback_data):
 eholandbot.infinity_polling()
 
 
-# вытащить ID отправителя, запрос на моб номер
+# запрос на моб номер
