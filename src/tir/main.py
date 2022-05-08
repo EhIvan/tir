@@ -10,6 +10,7 @@ user_id = 0
 path = "C:\\Users\\79175\\Documents\\GitHub\\tir\\src\\tir_db\\tir_db.db"  # Адрес БД
 
 
+  # Функции для регистрации пользователя.
 
 def get_name(message):  # получаем имя вносим в БД имя и telegram_id, задаем вопрос про Фамилиюё
     name = message.text
