@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-05-10T13:57:39.223Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="22aImyqZwMdZUGBFGBB5" version="18.0.2" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-05-10T14:03:16.966Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="pkXR2XNdSNlyAxLl2UwS" version="18.0.2" type="github" pages="2">
   <diagram id="mAz8v17iIhoyXriaT5d3" name="Страница 1">
     <mxGraphModel dx="1255" dy="2388" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -42,11 +42,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="bGLQNSZzRs6PAlF2FX4R-218" value="Реализуется позже" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#f8cecc;strokeColor=#b85450;opacity=30;align=left;verticalAlign=top;" parent="1" vertex="1">
-          <mxGeometry x="1600" y="-244.5" width="200" height="160" as="geometry" />
-        </mxCell>
         <mxCell id="bGLQNSZzRs6PAlF2FX4R-62" value="rank" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="1" vertex="1">
-          <mxGeometry x="1370" y="-229.5" width="180" height="130" as="geometry">
+          <mxGeometry x="1360" y="-229.5" width="180" height="130" as="geometry">
             <mxRectangle x="850" y="-550" width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -90,7 +87,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bGLQNSZzRs6PAlF2FX4R-69" value="user" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="1" vertex="1">
-          <mxGeometry x="850" y="-290" width="180" height="251" as="geometry">
+          <mxGeometry x="760" y="-330" width="180" height="251" as="geometry">
             <mxRectangle x="890" y="-275.5" width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -186,7 +183,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bGLQNSZzRs6PAlF2FX4R-97" value="club" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="1" vertex="1">
-          <mxGeometry x="1610" y="-220" width="180" height="130" as="geometry">
+          <mxGeometry x="1610" y="-170" width="180" height="130" as="geometry">
             <mxRectangle x="890" y="-275.5" width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -427,7 +424,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bGLQNSZzRs6PAlF2FX4R-188" value="user_events" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="1" vertex="1">
-          <mxGeometry x="850" y="120" width="180" height="160" as="geometry">
+          <mxGeometry x="880" y="120" width="180" height="160" as="geometry">
             <mxRectangle x="890" y="-275.5" width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -484,7 +481,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="IWwEFGl5aoY6KPnY0gYz-9" value="user_rank" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="1151" y="-290" width="180" height="130" as="geometry">
+          <mxGeometry x="1110" y="-290" width="180" height="130" as="geometry">
             <mxRectangle x="890" y="-275.5" width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -548,8 +545,8 @@
         <mxCell id="IWwEFGl5aoY6KPnY0gYz-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bGLQNSZzRs6PAlF2FX4R-195" target="bGLQNSZzRs6PAlF2FX4R-154">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IWwEFGl5aoY6KPnY0gYz-42" value="&lt;h1 style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 19px;&quot;&gt;Функции:&lt;/font&gt;&lt;/h1&gt;&lt;p style=&quot;font-size: 18px;&quot;&gt;&lt;/p&gt;&lt;ul style=&quot;font-size: 18px;&quot;&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавление нового пользователя&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Изменить данные пользователя&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список клубов&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавить пользователя в клуб&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавление роли пользователя клуба&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Удаление роли пользователя клуба&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список ролей пользователя в клубе&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список эвентов&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавить эвент&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Удалить эвент&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Изменить данные эвента&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список мест&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;получить список категорий&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список тренеров клуба&lt;/li&gt;&lt;/ul&gt;&lt;p style=&quot;font-size: 18px;&quot;&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="860" y="390" width="530" height="460" as="geometry" />
+        <mxCell id="IWwEFGl5aoY6KPnY0gYz-42" value="&lt;h1 style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 19px;&quot;&gt;Функции:&lt;/font&gt;&lt;/h1&gt;&lt;p style=&quot;font-size: 18px;&quot;&gt;&lt;/p&gt;&lt;ul style=&quot;font-size: 18px;&quot;&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавление нового пользователя&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Изменить данные пользователя&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список клубов&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавить пользователя в клуб&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавление роли пользователя клуба&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Удаление роли пользователя клуба&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список ролей пользователя&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список эвентов&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Добавить эвент&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Удалить эвент&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Изменить данные эвента&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список мест&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;получить список категорий&lt;/li&gt;&lt;li style=&quot;font-size: 18px;&quot;&gt;Получить список тренеров клуба&lt;/li&gt;&lt;/ul&gt;&lt;p style=&quot;font-size: 18px;&quot;&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="860" y="410" width="530" height="440" as="geometry" />
         </mxCell>
         <mxCell id="IWwEFGl5aoY6KPnY0gYz-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=19;" edge="1" parent="1" source="IWwEFGl5aoY6KPnY0gYz-44" target="bGLQNSZzRs6PAlF2FX4R-98">
           <mxGeometry relative="1" as="geometry" />
