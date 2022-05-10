@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-05-10T21:33:32.155Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="wHEdd-TdvZ7kxeOP0wMH" version="18.0.2" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-05-10T21:34:24.672Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="1vqnlghIyJs2OAJHAKh1" version="18.0.2" type="github" pages="2">
   <diagram id="WdyRvPK_gViIgtQoXbEy" name="DataBase Functions">
     <mxGraphModel dx="293" dy="2202" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -517,7 +517,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BVsXu0ZS6qXSFIIcC0lk" name="DialogFlow">
-    <mxGraphModel dx="2955" dy="1962" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2157" dy="1226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -841,8 +841,8 @@
         <mxCell id="_9WKvifKVf3CexewpvSw-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=9;" edge="1" parent="1" source="_9WKvifKVf3CexewpvSw-29" target="_9WKvifKVf3CexewpvSw-31">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_9WKvifKVf3CexewpvSw-29" value="Проверка количества участников" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="827" y="621" width="93" height="26" as="geometry" />
+        <mxCell id="_9WKvifKVf3CexewpvSw-29" value="Проверка количества участников и регистрации пользователя" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="827" y="604.5" width="93" height="59" as="geometry" />
         </mxCell>
         <mxCell id="_9WKvifKVf3CexewpvSw-31" value="Мероприятие N" style="whiteSpace=wrap;html=1;fontSize=12;rounded=0;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="986.5" y="550" width="193.5" height="200" as="geometry" />
