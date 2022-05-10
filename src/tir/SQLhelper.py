@@ -15,7 +15,7 @@ def create_connection():  # Подключение к БД
 
 
 def AddNewUser(name, telegramId):
-    connection = reate_connection()
+    connection = create_connection()
     cursor = connection.cursor()
     result = None
     try:
@@ -26,8 +26,8 @@ def AddNewUser(name, telegramId):
     except Error as e:
         print(f"The error '{e}' occurred")
 
-def UpdateUser(telegramId, longname=None, car_info =None, email=None, phone=None):
-    connection = reate_connection()
+def UpdateUser(telegram_id, longname=None, car_info =None, email=None, phone=None):
+    connection = create_connection()
     cursor = connection.cursor()
     result = None
     #TODO: Сделать проверку пустых значений, чтобы не перетирать имеющиеся данные в БД
@@ -39,7 +39,7 @@ def UpdateUser(telegramId, longname=None, car_info =None, email=None, phone=None
         print(f"The error '{e}' occurred")
 
 def GetClubs():
-    connection = reate_connection()
+    connection = create_connection()
     cursor = connection.cursor()
     result = None
     try:
@@ -51,7 +51,7 @@ def GetClubs():
 
 
 def AddUserRole(telegram_id, clubname, rankname):
-    connection = reate_connection()
+    connection = create_connection()
     cursor = connection.cursor()
     result = None
     try:
