@@ -69,15 +69,13 @@ def create_user(message):  # По идее, универсальная функ�
     except Error as e:
         print(f"The error '{e}' occurred")
 
-def update_user(TI, surname=None, mobile=None, car_info=None, email=None):  # По идее, универсальная функция под update, insert
-
-
+def update_user(TI, surname=None, phone=None, car_info=None, email=None):  # По идее, универсальная функция под update, insert
     text = """update user
               SET \n"""
     if surname != None:
         text += f"""surname='{surname}'"""
-    if mobile != None:
-        text += f"""mobile='{mobile}'"""
+    if phone != None:
+        text += f"""phone='{phone}'"""
     if car_info != None:
         text += f"""mobile='{car_info}'"""
     if email != None:
