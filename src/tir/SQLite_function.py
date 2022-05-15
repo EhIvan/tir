@@ -69,8 +69,9 @@ def create_user_rank(callbackdata, telegram_id):
     result = None
     registration_script = f"""
         INSERT INTO user_rank (user_id, rank_id)
-        VALUES ((select user_id from user WHERE telegram_id='{telegram_id}'), (SELECT rank_id from rank where rank_name='new_bro' and club_id={callbackdata.data}]))
+        VALUES ((select user_id from user WHERE telegram_id='{telegram_id}'), (SELECT rank_id from rank where rank_name='new_bro' and club_id={callbackdata.data[5:]}))
         """
+    print(registration_script)
     try:
         with connection:
             cursor.execute(registration_script)
@@ -78,6 +79,26 @@ def create_user_rank(callbackdata, telegram_id):
         # result = cursor.
         return result
 
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def update_rank(user_id, club_id, rank_name):
+    connection = create_connection(DataBasePath)
+    script = f'''
+    update user_rank
+    set \n
+    rank_id = (
+    select rank_id from rank where club_id={club_id} and rank_name='{rank_name}')
+    where user_id={user_id}
+    '''
+    print(script)
+    cursor = connection.cursor()
+    result = None
+    try:
+        cursor.execute(script)
+        result = cursor.fetchall()
+        return result
     except Error as e:
         print(f"The error '{e}' occurred")
 
@@ -127,6 +148,45 @@ def get_club():
         print(f"The error '{e}' occurred")
 
 
+def get_new_bro_list(club_id):
+    connection = create_connection(DataBasePath)
+    script = f'''
+SELECT user_id, name, surname, phone, telegram_id
+from user_rank
+inner join rank using (rank_id)
+INNER JOIN user USING (user_id)
+WHERE rank_name="new_bro" and club_id={club_id}
+'''
+    cursor = connection.cursor()
+    new_bro_list = None
+    try:
+        cursor.execute(script)
+        new_bro_list = cursor.fetchall()
+        return new_bro_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def get_trener_list(club_id):
+    connection = create_connection(DataBasePath)
+    script = f'''
+SELECT telegram_id
+FROM user
+inner JOIN user_rank USING (user_id)
+inner JOIN rank USING (rank_id)
+where rank_name in ("trener", "admin") and club_id={club_id}
+'''
+    cursor = connection.cursor()
+    trener_list = None
+    try:
+        cursor.execute(script)
+        trener_list = cursor.fetchall()
+        return trener_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+
 
 # Не актуально! Формирует запрос в БД для определения ранга пользователя,
 def check_rank(user_id):  # Тянет из БД ранг стрелка: админ, тренер, стрелок
@@ -149,3 +209,5 @@ def execute_read_query(connection, query):  # По идее, универсал�
         return result
     except Error as e:
         print(f"The error '{e}' occurred")
+
+

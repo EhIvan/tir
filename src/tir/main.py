@@ -65,7 +65,7 @@ def get_car_info(message, data_user):
                             reply_markup=keyboard_function.club_keyborad(SQLite_function.get_club()))
 
 # def get_club_info(message):
-@eholandbot.message_handler(commands=['test'])
+#@eholandbot.message_handler(commands=['test'])
 def get_club_info(message):
     club_list = SQLite_function.get_club()
     print(club_list)
@@ -76,21 +76,46 @@ def get_club_info(message):
 
 
 @eholandbot.callback_query_handler(func=lambda callback_data: True)  # Может быть только один
-def work_with_keyboard(callback_data, data_user):
+def work_with_keyboard(callback_data):
     print(callback_data.data[0:5])
     print(callback_data.data[5:])
-    if callback_data.data[0:4] == 'club_': # не работает
-        print("да")
-        eholandbot.answer_callback_query(callback_data.id, 'Сейчас отменим')
+#    if callback_data.data[0:4] == 'club_': # не работает
+#       print("да")
+#            eholandbot.answer_callback_query(callback_data.id, 'Сейчас отменим')
+#       eholandbot.edit_message_text(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id,
+#                                     text="Подтверждаете регистрацию?", reply_markup=None)
+#        eholandbot.send_message(callback_data.from_user.id, 'Выберите дату')
+    if callback_data.data.startswith('club_') == True:
+#        eholandbot.answer_callback_query(callback_data.id, '')
+        SQLite_function.create_user_rank(callback_data, callback_data.from_user.id)
         eholandbot.edit_message_text(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id,
-                                     text="Подтверждаете регистрацию?", reply_markup=None)
-        eholandbot.send_message(callback_data.from_user.id, 'Выберите дату')
-    elif callback_data.data.startswith('club_') == True:
-        print("ofcorse")
-        eholandbot.answer_callback_query(callback_data.id, '')
+                                     text="Регистрация пройдена, ожидайте подтверждение от вашего тренера", reply_markup=None)
 
-        eholandbot.edit_message_text(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id,
-                                     text="Подтверждаете регистрацию?", reply_markup=None)
+        # Получить список всех тренеров и админов этого клуба
+        # Получить список всех new_bro клуба
+        # Формируем клавиутару: text="Поступила заявка от data_user(фамилия, имя, телефон)"
+        trener_notificatipon(callback_data.data[5:])
+    elif callback_data.data.startswith('approve_') == True:
+        print(callback_data.data)
+        SQLite_function.update_rank(callback_data.data.split('_')[1], callback_data.data.split('_')[2], "strelok")
+        eholandbot.send_message(callback_data.data.split('_')[3], text='Вы приняты!')
+    elif callback_data.data.startswith('reject_') == True:
+        print(callback_data.data)
+#        SQLite_function. Ничего удалять нельзя, т.к. если человек состоит в двух клубах, то все сломается, нужна проверка.
+        eholandbot.send_message(callback_data.data.split('_')[3], text='Вы не приняты! Поговорите с вашим тренером')
+
+
+def trener_notificatipon(club_id):
+    new_bro_list = SQLite_function.get_new_bro_list(club_id)
+    trener_list = SQLite_function.get_trener_list(club_id)
+    print(new_bro_list)
+    print(trener_list)
+
+    for new_bro in new_bro_list:
+        for trener in trener_list:
+            eholandbot.send_message(trener[0], text=f'Поступила заявка от {new_bro[1]} {new_bro[2]} \n {new_bro[3]}',
+                                reply_markup=keyboard_function.new_bro_approve(new_bro[0], club_id, new_bro[4]))
+
 
 
 eholandbot.infinity_polling(2)

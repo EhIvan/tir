@@ -21,3 +21,11 @@ def club_keyborad(club_list):
 # print(club_list[1])
 
     return club_keyboard
+
+
+
+def new_bro_approve(user_id, club_id, telegram_id):
+    new_bro_keyboard = types.InlineKeyboardMarkup()
+    new_bro_keyboard.add(types.InlineKeyboardButton(text='Принять', callback_data=f'approve_{user_id}_{club_id}_{telegram_id}'),
+                           types.InlineKeyboardButton(text='Отказать', callback_data=f'reject_{user_id}_{club_id}_{telegram_id}'))
+    return new_bro_keyboard
