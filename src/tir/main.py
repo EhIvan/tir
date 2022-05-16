@@ -18,7 +18,10 @@ def first_step(message):
     if len(rank) == 0:
         name = eholandbot.send_message(chat_id=message.chat.id, text='Для продолжения необходимо зарегестрироваться.\nКак тебя зовут?')
         eholandbot.register_next_step_handler(name, get_name)  # следующий шаг – функция get_name
-
+    elif len(rank) == 1 and rank[0][1] == 'new_bro':
+        eholandbot.send_message(message.from_user.id, text='Доступ ограничен, обратитесь к вашему тренеру.')
+    elif len(rank) == 1:
+        keyboard_function.keyboard_main(rank)
 
 
 """# """
@@ -77,8 +80,6 @@ def get_club_info(message):
 
 @eholandbot.callback_query_handler(func=lambda callback_data: True)  # Может быть только один
 def work_with_keyboard(callback_data):
-    print(callback_data.data[0:5])
-    print(callback_data.data[5:])
 #    if callback_data.data[0:4] == 'club_': # не работает
 #       print("да")
 #            eholandbot.answer_callback_query(callback_data.id, 'Сейчас отменим')

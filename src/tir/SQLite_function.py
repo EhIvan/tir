@@ -87,21 +87,22 @@ def update_rank(user_id, club_id, rank_name):
     connection = create_connection(DataBasePath)
     script = f'''
     update user_rank
-    set \n
-    rank_id = (
-    select rank_id from rank where club_id={club_id} and rank_name='{rank_name}')
+    set rank_id = (
+    select rank_id from rank where club_id='{club_id}' and rank_name='{rank_name}')
     where user_id={user_id}
     '''
     print(script)
     cursor = connection.cursor()
     result = None
     try:
-        cursor.execute(script)
-        result = cursor.fetchall()
-        return result
+        with connection:
+            cursor.execute(script)
+            result = cursor.fetchall()
+            return result
+            print(result)
     except Error as e:
         print(f"The error '{e}' occurred")
-
+    print(result)
 
 # Универсальный скрипт для обновления таблицы user
 def update_user(TI, surname=None, phone=None, car_info=None, email=None):
