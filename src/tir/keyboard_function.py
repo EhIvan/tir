@@ -22,6 +22,8 @@ def club_keyborad(club_list):
 
     return club_keyboard
 
+def place_keyboard(event_id, place_list):
+
 
 
 def new_bro_approve(user_id, club_id, telegram_id):
@@ -31,32 +33,30 @@ def new_bro_approve(user_id, club_id, telegram_id):
     return new_bro_keyboard
 
 def keyboard_main(rank):
-    telegram_id = message.from_user.id
-    print(telegram_id)
     keyboard = types.InlineKeyboardMarkup()
-    key_join_event = types.InlineKeyboardButton(text='Записаться', callback_data='join_event')
-    key_cancel_event = types.InlineKeyboardButton(text='Отмена записи', callback_data='cancel_event')
+    key_list_event = types.InlineKeyboardButton(text='Доступные мероприятия', callback_data='key_list_event')
+    key_cancel_event = types.InlineKeyboardButton(text='Отмена записи', callback_data='key_cancel_event')
     key_back = types.InlineKeyboardButton(text='Назад', callback_data='back')
-    key_stat = types.InlineKeyboardButton(text='Показать статистику', callback_data='show_stat')
-    key_new_event = types.InlineKeyboardButton(text='Создать новую тренировку', callback_data='create_new_event')
-    key_registration = types.InlineKeyboardButton(text='Пройти регистрацию', callback_data='registration')
-    print(result[0])
+    key_new_event = types.InlineKeyboardButton(text='Добавить мероприятие', callback_data='key_new_event')
+    key_list_user_event = types.InlineKeyboardButton(text='Получить список участников мероприятия',
+                                                     callback_data='key_list_user_event')
+    key_get_new_bro_list = types.InlineKeyboardButton(text='Список заявок на вступление',
+                                                     callback_data='key_get_new_bro_list')
+    print(rank[0][1])
 
-    if result == [('admin',)]:
-        keyboard.add(key_join_event)
-        keyboard.add(key_cancel_event, key_stat, key_new_event, key_registration)
+    if rank[0][1] == 'admin':
+        keyboard.add(key_list_event)
+        keyboard.add(key_list_user_event, key_get_new_bro_list)
+        keyboard.add(key_new_event)
         keyboard.add(key_back)
-    elif result == [('trener',)]:
-        keyboard.add(key_join_event)
-        keyboard.add(key_cancel_event, key_stat, key_new_event)
+    elif rank[0][1] == 'trener':
+        keyboard.add(key_list_event)
+        keyboard.add(key_get_new_bro_list, key_new_event)
         keyboard.add(key_back)
-    elif result == [('shooter',)]:
-        keyboard.add(key_join_event, key_cancel_event, key_stat)
+    elif rank[0][1] == 'strelok':
+        keyboard.add(key_list_event)
         keyboard.add(key_back)
-    elif result == [('new_bro',)]:
-        eholandbot.send_message(message.chat.id, "Проверка пользователя, обратитесь к вашему тренеру")
-        return None
+        print('strelok_i am there')
     else:
-        keyboard.add(key_registration)
         keyboard.add(key_back)
-    eholandbot.send_message(message.from_user.id, text='sad', reply_markup=keyboard)
+    return keyboard

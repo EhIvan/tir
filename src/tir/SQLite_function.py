@@ -21,6 +21,39 @@ def create_connection(DataBasePath):  # Путь к БД указан сразу
     return connection
 
 
+def create_event(telegram_id, data):
+    connection = create_connection(DataBasePath)
+    cursor = connection.cursor()
+    result = None
+    registration_script = f"""
+                INSERT INTO event (event_creator_id, date)
+                VALUES ((select user_id from user where telegram_id={telegram_id}), "{data}");
+                """
+    print(registration_script)
+    try:
+        with connection:
+            cursor.execute(registration_script)
+        print(cursor.lastrowid)
+        event_id = cursor.lastrowid
+        # result = cursor.
+        return event_id
+
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+def place_list():
+    connection = create_connection(DataBasePath)
+    script = "select * from place"
+    cursor = connection.cursor()
+    place_list = None
+    try:
+        cursor.execute(script)
+        place_list = cursor.fetchall()
+        return place_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
 # Получаем все ранги пользователя в различных клубах
 def get_rank(telegram_id):
     connection = create_connection(DataBasePath)

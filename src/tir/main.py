@@ -1,5 +1,6 @@
 import telebot
-
+from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
+from datetime import datetime, date, time
 eholandbot = telebot.TeleBot('5390922879:AAGQPYKFnmp1GzxDUUoHV22Vk9GnbuohoGw')
 import SQLite_function
 #import main_function
@@ -22,7 +23,7 @@ def first_step(message):
         eholandbot.send_message(message.from_user.id, text='Доступ ограничен, обратитесь к вашему тренеру.')
     elif len(rank) == 1:
         keyboard_function.keyboard_main(rank)
-
+        eholandbot.send_message(message.from_user.id, text='Вам доступно:', reply_markup=keyboard_function.keyboard_main(rank))
 
 """# """
 def get_name(message):  # получаем имя вносим в БД имя и telegram_id, задаем вопрос про Фамилиюё
@@ -77,6 +78,56 @@ def get_club_info(message):
     eholandbot.send_message(message.from_user.id, text='Выберите клуб',
                             reply_markup=keyboard_function.club_keyborad(club_list))
 
+@eholandbot.callback_query_handler(func=DetailedTelegramCalendar.func())
+def cal(c):
+    result, key, step = DetailedTelegramCalendar().process(c.data)
+    current_date = date.today()
+    if not result and key:
+        eholandbot.edit_message_text(f"Select {LSTEP[step]}",
+                              c.message.chat.id,
+                              c.message.message_id,
+                              reply_markup=key)
+    elif result:
+        if result < current_date:
+            eholandbot.edit_message_text(f"Выбранная дата не может быть раньше чем  {current_date}!",
+                                         c.message.chat.id,
+                                         c.message.message_id)
+            calendar, step = DetailedTelegramCalendar().build()
+            eholandbot.send_message(c.message.chat.id, f"Select {LSTEP[step]}",
+                                    reply_markup=calendar)
+        else:
+            eholandbot.edit_message_text(f"You selected {result}",
+                              c.message.chat.id,
+                              c.message.message_id)
+            date_event = result
+            print(date_event)
+            create_event_place_keyboard(c, date_event)
+
+
+def create_event_place_keyboard(message, date_event):  # Набросок клавиатуры для записи на тренировку
+    event_id = SQLite_function.create_event(message.from_user.id, date_event)
+    place_list = SQLite_function.place_list()
+    print(place_list)
+    keyboard_function.place_keyboard(event_id, place_list)
+
+"""#
+#    connection = create_connection(path)
+#    telegram_id = message.from_user.id
+    #    #    registration_script = f"
+    #                INSERT INTO events (event_creator_id, date)
+    #                VALUES ((select user_id from user where telegram_id={telegram_id}), "{date_event}");
+                "
+    print(registration_script)
+    create_event = execute_insert_query(connection, registration_script)
+    print(create_event)
+#    script = "select * from pleace"
+    result = execute_read_query(connection, script)
+    n = len(result)
+    keyboard = types.InlineKeyboardMarkup()
+    for i in range(0, n):
+        keyboard.add(types.InlineKeyboardButton(text=f'{result[i][1]}', callback_data=f'pleace_{result[i][0]}'))
+        print(result[i][1])
+"""
 
 @eholandbot.callback_query_handler(func=lambda callback_data: True)  # Может быть только один
 def work_with_keyboard(callback_data):
@@ -91,10 +142,6 @@ def work_with_keyboard(callback_data):
         SQLite_function.create_user_rank(callback_data, callback_data.from_user.id)
         eholandbot.edit_message_text(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id,
                                      text="Регистрация пройдена, ожидайте подтверждение от вашего тренера", reply_markup=None)
-
-        # Получить список всех тренеров и админов этого клуба
-        # Получить список всех new_bro клуба
-        # Формируем клавиутару: text="Поступила заявка от data_user(фамилия, имя, телефон)"
         trener_notificatipon(callback_data.data[5:])
     elif callback_data.data.startswith('approve_') == True:
         print(callback_data.data)
@@ -104,6 +151,23 @@ def work_with_keyboard(callback_data):
         print(callback_data.data)
 #        SQLite_function. Ничего удалять нельзя, т.к. если человек состоит в двух клубах, то все сломается, нужна проверка.
         eholandbot.send_message(callback_data.data.split('_')[3], text='Вы не приняты! Поговорите с вашим тренером')
+    elif callback_data.data.startswith('key_new_event'):
+        eholandbot.answer_callback_query(callback_data.id, 'Процедура создание новой тренировки')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        calendar, step = DetailedTelegramCalendar().build()
+        eholandbot.send_message(callback_data.from_user.id, f"Select {LSTEP[step]}", reply_markup=calendar)
+
+    else: eholandbot.send_message(callback_data.from_user.id, 'Я этому еще не обучен...')
+
+""""
+key_list_event
+key_list_user_event
+key_get_new_bro_list
+key_new_event
+key_back
+"""
+
+
 
 
 def trener_notificatipon(club_id):
