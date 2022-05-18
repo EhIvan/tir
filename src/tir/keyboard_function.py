@@ -1,4 +1,8 @@
 from telebot import types
+
+import SQLite_function
+
+
 def phone_keyboard():
     phone_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     phone_keyboard.add(types.KeyboardButton(text="Нажмите на кнопку", request_contact=True))
@@ -22,9 +26,34 @@ def club_keyborad(club_list):
 
     return club_keyboard
 
-def place_keyboard(event_id, place_list):
+
+def club_trener(event_id):
+    event_id = event_id[0][0]
+    print("keyclub_trener", event_id)
+    trener_list_for_event = SQLite_function.get_trener_list_for_event(event_id)
+    print(trener_list_for_event)
+    club_trener = types.InlineKeyboardMarkup()
+    for item in trener_list_for_event:
+        club_trener.add(types.InlineKeyboardButton(text=f'{item[0]} {item[1]}',
+                                                   callback_data=f'event_trener/{item[2]}/{event_id}'))
+    return club_trener
 
 
+def event_category(event_id):
+    category_list = SQLite_function.category_list()
+    event_category = types.InlineKeyboardMarkup()
+    for item in category_list:
+        event_category.add(types.InlineKeyboardButton(text=f'{item[1]}',
+                                                   callback_data=f'event_category/{item[0]}/{event_id}'))
+    return event_category
+
+
+def place_keyboard(club_id, place_list):
+
+    place_keyboard = types.InlineKeyboardMarkup()
+    for item in place_list:
+        place_keyboard.add(types.InlineKeyboardButton(text=f'{item[1]}', callback_data=f'create_event_in_place/{item[0]}/{club_id}'))
+    return place_keyboard
 
 def new_bro_approve(user_id, club_id, telegram_id):
     new_bro_keyboard = types.InlineKeyboardMarkup()
@@ -34,14 +63,14 @@ def new_bro_approve(user_id, club_id, telegram_id):
 
 def keyboard_main(rank):
     keyboard = types.InlineKeyboardMarkup()
-    key_list_event = types.InlineKeyboardButton(text='Доступные мероприятия', callback_data='key_list_event')
-    key_cancel_event = types.InlineKeyboardButton(text='Отмена записи', callback_data='key_cancel_event')
-    key_back = types.InlineKeyboardButton(text='Назад', callback_data='back')
-    key_new_event = types.InlineKeyboardButton(text='Добавить мероприятие', callback_data='key_new_event')
+    key_list_event = types.InlineKeyboardButton(text='Доступные мероприятия', callback_data=f'key_list_event/{rank[0][2]}')
+    key_cancel_event = types.InlineKeyboardButton(text='Отмена записи', callback_data=f'key_cancel_event/{rank[0][2]}')
+    key_back = types.InlineKeyboardButton(text='Назад', callback_data=f'back')
+    key_new_event = types.InlineKeyboardButton(text='Добавить мероприятие', callback_data=f'key_new_event/{rank[0][2]}')
     key_list_user_event = types.InlineKeyboardButton(text='Получить список участников мероприятия',
-                                                     callback_data='key_list_user_event')
+                                                     callback_data=f'key_list_user_event/{rank[0][2]}')
     key_get_new_bro_list = types.InlineKeyboardButton(text='Список заявок на вступление',
-                                                     callback_data='key_get_new_bro_list')
+                                                     callback_data=f'key_get_new_bro_list/{rank[0][2]}')
     print(rank[0][1])
 
     if rank[0][1] == 'admin':

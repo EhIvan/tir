@@ -21,13 +21,14 @@ def create_connection(DataBasePath):  # Путь к БД указан сразу
     return connection
 
 
-def create_event(telegram_id, data):
+
+def create_event(telegram_id, place_id, club_id):
     connection = create_connection(DataBasePath)
     cursor = connection.cursor()
     result = None
     registration_script = f"""
-                INSERT INTO event (event_creator_id, date)
-                VALUES ((select user_id from user where telegram_id={telegram_id}), "{data}");
+                INSERT INTO event (event_creator_id, place_id, club_id)
+                VALUES ((select user_id from user where telegram_id={telegram_id}),{place_id}, {club_id});
                 """
     print(registration_script)
     try:
@@ -40,6 +41,53 @@ def create_event(telegram_id, data):
 
     except Error as e:
         print(f"The error '{e}' occurred")
+
+
+def update_event(event_id, date=None, time=None, trener_id=None, category_id=None, comment=None):
+    text = """update event
+              SET \n"""
+    if date != None:
+        text += f"""date='{date}'"""
+    if time != None:
+        text += f"""time='{time}'"""
+    if trener_id != None:
+        text += f"""trener_id='{trener_id}'"""
+    if category_id != None:
+        text += f"""category_id='{category_id}'"""
+    if comment != None:
+        text += f"""comment='{comment}'"""
+    text += f"""\nWHERE event_id='{event_id[0][0]}'"""
+    print(text)
+    connection = create_connection(DataBasePath)
+    cursor = connection.cursor()
+    result = None
+    try:
+        with connection:
+            cursor.execute(text)
+        print(cursor.lastrowid)
+        return result
+
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def get_event_id(telegram_id):
+    connection = create_connection(DataBasePath)
+    script = f"""
+select max(event_id) from event
+inner join user on event.event_creator_id=user.user_id
+where telegram_id={telegram_id}
+"""
+    cursor = connection.cursor()
+    event_id = None
+    try:
+        cursor.execute(script)
+        event_id = cursor.fetchall()
+        return event_id
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
 
 def place_list():
     connection = create_connection(DataBasePath)
@@ -137,6 +185,28 @@ def update_rank(user_id, club_id, rank_name):
         print(f"The error '{e}' occurred")
     print(result)
 
+def update_place_new_event(callback_data):
+    connection = create_connection(DataBasePath)
+    print("place_id", callback_data.data.split("/")[1])
+    print("event_id", callback_data.data.split("/")[2])
+    script = f'''
+    update event
+    set place_id = {callback_data.data.split("/")[1]}
+    where event_id = {callback_data.data.split("/")[2]}
+    
+        '''
+    print(script)
+    cursor = connection.cursor()
+    result = None
+    try:
+        with connection:
+            cursor.execute(script)
+            result = cursor.fetchall()
+            return result
+            print(result)
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
 # Универсальный скрипт для обновления таблицы user
 def update_user(TI, surname=None, phone=None, car_info=None, email=None):
     text = """update user
@@ -182,6 +252,19 @@ def get_club():
         print(f"The error '{e}' occurred")
 
 
+def category_list():
+    connection = create_connection(DataBasePath)
+    script = f'''SELECT * from category'''
+    cursor = connection.cursor()
+    category_list = None
+    try:
+        cursor.execute(script)
+        category_list = cursor.fetchall()
+        return category_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
 def get_new_bro_list(club_id):
     connection = create_connection(DataBasePath)
     script = f'''
@@ -220,6 +303,27 @@ where rank_name in ("trener", "admin") and club_id={club_id}
         print(f"The error '{e}' occurred")
 
 
+def get_trener_list_for_event(event_id):
+    connection = create_connection(DataBasePath)
+    print("get_trener_list_for_event", event_id)
+    script = f'''
+SELECT name, surname, user_id, event_id
+from user
+inner join user_rank USING (user_id)
+inner join rank USING (rank_id)
+INNER join club USING (club_id)
+inner join event using (club_id)
+WHERE event_id={event_id} AND rank_name in ("trener", "admin")
+'''
+    print(script)
+    cursor = connection.cursor()
+    trener_event_list = None
+    try:
+        cursor.execute(script)
+        trener_event_list = cursor.fetchall()
+        return trener_event_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
 
 
 # Не актуально! Формирует запрос в БД для определения ранга пользователя,
