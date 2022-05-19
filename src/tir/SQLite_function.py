@@ -2,7 +2,7 @@
 
 import sqlite3
 from sqlite3 import Error
-
+from datetime import datetime, date, time
 # Путь к БД
 #DataBasePath = "C:\\Users\\79175\\Documents\\GitHub\\tir\\src\\tir_db\\tir_db.db"  # Адрес старой БД
 #DataBasePath = "C:\\Users\\79175\\Documents\\GitHub\\tir\\src\\TIRDB.db"  # Адрес БД
@@ -21,6 +21,26 @@ def create_connection(DataBasePath):  # Путь к БД указан сразу
     return connection
 
 
+def get_event_list(club_id):
+    connection = create_connection(DataBasePath)
+    script = f"""
+SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
+from event
+inner join place USING (place_id)
+inner JOIN user on event.trener_id=user.user_id
+inner JOIN category using (category_id)
+WHERE club_id={club_id} and date>='{date.today()}'
+"""
+    print(date.today())
+    print(script)
+    cursor = connection.cursor()
+    event_list = None
+    try:
+        cursor.execute(script)
+        event_list = cursor.fetchall()
+        return event_list
+    except Error as e:
+        print(f"The error '{e}' occurred")
 
 def create_event(telegram_id, place_id, club_id):
     connection = create_connection(DataBasePath)
@@ -44,6 +64,7 @@ def create_event(telegram_id, place_id, club_id):
 
 
 def update_event(event_id, date=None, time=None, trener_id=None, category_id=None, comment=None):
+    print("Внутри SQL Функции", event_id)
     text = """update event
               SET \n"""
     if date != None:
@@ -56,7 +77,7 @@ def update_event(event_id, date=None, time=None, trener_id=None, category_id=Non
         text += f"""category_id='{category_id}'"""
     if comment != None:
         text += f"""comment='{comment}'"""
-    text += f"""\nWHERE event_id='{event_id[0][0]}'"""
+    text += f"""\nWHERE event_id='{event_id}'"""
     print(text)
     connection = create_connection(DataBasePath)
     cursor = connection.cursor()

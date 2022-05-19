@@ -27,8 +27,14 @@ def club_keyborad(club_list):
     return club_keyboard
 
 
+def event_keyboard(event_list):
+    # SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
+    print(event_list)
+    event_keyboard = types.InlineKeyboardMarkup()
+    event_keyboard.add(types.InlineKeyboardButton(text="Записаться", callback_data=f'event_keyboard/{event_list[7]}/{event_list[8]}'))
+    return event_keyboard
+
 def club_trener(event_id):
-    event_id = event_id[0][0]
     print("keyclub_trener", event_id)
     trener_list_for_event = SQLite_function.get_trener_list_for_event(event_id)
     print(trener_list_for_event)
@@ -63,7 +69,7 @@ def new_bro_approve(user_id, club_id, telegram_id):
 
 def keyboard_main(rank):
     keyboard = types.InlineKeyboardMarkup()
-    key_list_event = types.InlineKeyboardButton(text='Доступные мероприятия', callback_data=f'key_list_event/{rank[0][2]}')
+    key_list_event = types.InlineKeyboardButton(text='Доступные мероприятия', callback_data=f'key_list_event/{rank[0][2]}') # в rank[0][2] передается club_id
     key_cancel_event = types.InlineKeyboardButton(text='Отмена записи', callback_data=f'key_cancel_event/{rank[0][2]}')
     key_back = types.InlineKeyboardButton(text='Назад', callback_data=f'back')
     key_new_event = types.InlineKeyboardButton(text='Добавить мероприятие', callback_data=f'key_new_event/{rank[0][2]}')

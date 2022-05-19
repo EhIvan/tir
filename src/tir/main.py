@@ -107,7 +107,8 @@ def cal(c):
 
 def update_event_place(c, date_event):
     telegram_id = c.from_user.id
-    event_id = SQLite_function.get_event_id(telegram_id)
+    event_id = SQLite_function.get_event_id(telegram_id)[0][0]
+    print("update_event_place перед запуском update_event c датой", event_id)
     SQLite_function.update_event(event_id, date=date_event, time=None, trener_id=None, category_id=None, comment=None)
     time_event = eholandbot.send_message(chat_id=c.message.chat.id, text="Укажите время начала тренировки")
     eholandbot.register_next_step_handler(time_event, update_time, event_id)
@@ -122,15 +123,29 @@ def update_time(time_event, event_id):
 # Разобраться с переменной event_id.
 def update_trener(callback_data):
     user_id = callback_data.data.split('/')[1]
-    event_id = list(callback_data.data.split('/')[2])
-
+    event_id = callback_data.data.split('/')[2]
+    print("update_trener event_id", event_id)
+    print("update_trener user_id", user_id)
     SQLite_function.update_event(event_id, date=None, time=None, trener_id=user_id, category_id=None,
                                  comment=None)
-    eholandbot.send_message(chat_id=callback_data.message.chat.id, text="Выберите категорию тренировки:",
+    eholandbot.send_message(chat_id=callback_data.message.chat.id, text="Выберите дисциплину тренировки:",
                                         reply_markup=keyboard_function.event_category(event_id))
 
 
+def update_category(callback_data):
+    category_id = callback_data.data.split('/')[1]
+    event_id = callback_data.data.split('/')[2]
+    print("update_category event_id", event_id)
+    print("update_category user_id", category_id)
+    SQLite_function.update_event(event_id, date=None, time=None, trener_id=None, category_id=category_id,
+                                 comment=None)
+    comment = eholandbot.send_message(chat_id=callback_data.message.chat.id, text="Внесите комментарии к тренировке")
+    eholandbot.register_next_step_handler(comment, update_comment, event_id)
 
+
+def update_comment(message, event_id):
+    SQLite_function.update_event(event_id, date=None, time=None, trener_id=None, category_id=None, comment=message.text)
+    eholandbot.send_message(message.from_user.id, "Тренировка создана")
 
 
 def create_event_place_keyboard(message):  # Набросок клавиатуры для записи на тренировку
@@ -199,6 +214,16 @@ def work_with_keyboard(callback_data):
         eholandbot.answer_callback_query(callback_data.id, 'Категория выбрана')
         eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
         print(callback_data.data)
+        update_category(callback_data)
+    elif callback_data.data.startswith('key_list_event'):
+        eholandbot.answer_callback_query(callback_data.id, 'Загружем список доступных тренировок')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        show_event_list(callback_data)
+    elif callback_data.data.startswith("event_keyboard"):
+        print(callback_data.data)
+        eholandbot.answer_callback_query(callback_data.id, 'Меню тренировки')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        event_menu(callback_data)
 
     else: eholandbot.send_message(callback_data.from_user.id, 'Я этому еще не обучен...')
 
@@ -206,12 +231,32 @@ def work_with_keyboard(callback_data):
 key_list_event
 key_list_user_event
 key_get_new_bro_list
-key_new_event
+key_new_event - готово
 key_back
+
 """
+def event_menu(callback_data):
+    club_id = callback_data.data.split('/')[2]
+    event_id = callback_data.data.split('/')[1]
+# Для данного шага нужен статус пользователя из таблицы User_rank
+# и есть ли user_id пользователя в таблице user_event с требуемым event_id: если есть до клавиша отмены регистрации, если нет, то клавиша зарегестрироваться
+#event_keyboard/49/1
 
 
+def show_event_list(callback_data):
+    telegram_id = callback_data.from_user.id
+    club_id = callback_data.data.split("/")[1]
+    event_list = SQLite_function.get_event_list(club_id)
+    print("event_list", event_list)
+    print("telegram_id", telegram_id)
+    print("club_id", club_id)
+    for item in event_list:
+        eholandbot.send_message(callback_data.from_user.id, f"Тренировка в {item[2]} {item[0]} {item[1]} "
+                                                            f"\n Тренер: {item[4]} в дисциплине {item[5]}"
+                                                            f"\n Комментарий: {item[6]}",
+                                reply_markup=keyboard_function.event_keyboard(item))
 
+    # SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
 
 def trener_notificatipon(club_id):
     new_bro_list = SQLite_function.get_new_bro_list(club_id)
