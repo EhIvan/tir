@@ -325,4 +325,4 @@ def get_new_bro_list(callback_data):
                                 reply_markup=keyboard_function.new_bro_approve(new_bro[0], club_id, new_bro[4]))
 
 
-eholandbot.infinity_polling(2)
+eholandbot.infinity_polling(25)

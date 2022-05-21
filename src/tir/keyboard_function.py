@@ -105,7 +105,7 @@ def one_event_menu(rank, reg_info, event_id):
     key_show_user_event = types.InlineKeyboardButton(text='Показать список участников',
                                                      callback_data=f'key_show_user_event/{event_id}')
     key_delete_event = types.InlineKeyboardButton(text='Отмена мероприятия',
-                                                  callback_data=f'key_delete_event/{event_id}')
+                                                  callback_data=f'key_delete_event/{rank[0][2]}/{event_id}')
 
     if len(reg_info) == 0:
         keyboard.add(key_registration)
