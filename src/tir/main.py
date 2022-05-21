@@ -17,7 +17,7 @@ def first_step(message):
     rank = SQLite_function.get_rank(message.from_user.id)
     print(rank)
     if len(rank) == 0:
-        name = eholandbot.send_message(chat_id=message.chat.id, text='Для продолжения необходимо зарегестрироваться.\nКак тебя зовут?')
+        name = eholandbot.send_message(chat_id=message.chat.id, text='Привет! Это бот клуба A-Shooting. Пожалуйста, зарегистрируйтесь для продолжения. \n Укажите Ваше имя')
         eholandbot.register_next_step_handler(name, get_name)  # следующий шаг – функция get_name
     elif len(rank) == 1 and rank[0][1] == 'new_bro':
         eholandbot.send_message(message.from_user.id, text='Доступ ограничен, обратитесь к вашему тренеру.')
@@ -35,7 +35,7 @@ def get_name(message):  # получаем имя вносим в БД имя и
     data_user[0] = message.from_user.id
     data_user[1] = message.text
     print(data_user)
-    surname = eholandbot.send_message(chat_id=message.chat.id, text='Какая у тебя фамилия?')
+    surname = eholandbot.send_message(chat_id=message.chat.id, text='Укажите Вашу фамилию')
     eholandbot.register_next_step_handler(surname, get_surname, data_user)
 
 
@@ -45,7 +45,7 @@ def get_surname(message, data_user):
     data_user[2] = message.text
     print(data_user)
     SQLite_function.update_user(message.from_user.id, surname=message.text, phone=None, car_info=None, email=None)
-    phone = eholandbot.send_message(chat_id=message.chat.id, text="А теперь ваш номер..", reply_markup=keyboard_function.phone_keyboard())
+    phone = eholandbot.send_message(chat_id=message.chat.id, text="""Укажите Ваш номер телефона.\nДля этого нажмите на кнопку "Отправить номер телефона" внизу экрана""", reply_markup=keyboard_function.phone_keyboard())
     eholandbot.register_next_step_handler(phone, get_phone, data_user)
 
 
@@ -55,7 +55,8 @@ def get_phone(message, data_user):
     data_user[3] = message.contact.phone_number
     print(data_user)
     SQLite_function.update_user(message.from_user.id, surname=None, phone=message.contact.phone_number, car_info=message.text, email=None)
-    car_info = eholandbot.send_message(chat_id=message.chat.id, text="Для вашего комфорта предоставте марку и гос. номер ВСЕХ ваших машин!", reply_markup=telebot.types.ReplyKeyboardRemove())
+    car_info = eholandbot.send_message(chat_id=message.chat.id, text="Добавьте марку и гос номер Вашей машины (мотоцикла) в формате «Мерседес, х111х111». Если вы планируете приезжать на разных автомобилях, то добавьте их все. Если у Вас нет машины, напишите Нет",
+                                       reply_markup=telebot.types.ReplyKeyboardRemove())
     eholandbot.register_next_step_handler(car_info, get_car_info, data_user)
 
 
@@ -187,6 +188,7 @@ def work_with_keyboard(callback_data):
         print(callback_data.data)
         SQLite_function.update_rank(callback_data.data.split('_')[1], callback_data.data.split('_')[2], "strelok")
         eholandbot.send_message(callback_data.data.split('_')[3], text='Вы приняты!')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
     elif callback_data.data.startswith('reject_') == True:
         print(callback_data.data)
 #        SQLite_function. Ничего удалять нельзя, т.к. если человек состоит в двух клубах, то все сломается, нужна проверка.
@@ -224,20 +226,65 @@ def work_with_keyboard(callback_data):
         eholandbot.answer_callback_query(callback_data.id, 'Меню тренировки')
         eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
         event_menu(callback_data)
+    elif callback_data.data.startswith("key_registration"):
+        eholandbot.answer_callback_query(callback_data.id, 'Участие в тренировке подтверждено', show_alert=True)
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        SQLite_function.registration(callback_data.from_user.id, callback_data.data.split("/")[1],
+                                            callback_data.data.split("/")[2])
+    elif callback_data.data.startswith("key_cancel_registration"):
+        eholandbot.answer_callback_query(callback_data.id, 'Участие в тренировке отменено', show_alert=True)
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        SQLite_function.cancel_registration(callback_data.from_user.id, callback_data.data.split("/")[1],
+                                            callback_data.data.split("/")[2])
+    elif callback_data.data.startswith("key_delete_event"):
+        eholandbot.answer_callback_query(callback_data.id, 'Тренировка отменена', show_alert=True)
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        SQLite_function.delete_event(callback_data.from_user.id, callback_data.data.split("/")[1],
+                                            callback_data.data.split("/")[2])
+    elif callback_data.data.startswith("key_show_user_event"):
+        eholandbot.answer_callback_query(callback_data.id, 'Грузим списки...')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        user_event = SQLite_function.show_user_event(callback_data.data.split("/")[1])
+        print(user_event)
+        text = "Список участников"
+        for item in user_event:
+            text += f"""\n{item[0]} {item[1]} {item[2]}"""
+        print(text)
+        eholandbot.send_message(callback_data.from_user.id, text=f'{text}')
+    elif callback_data.data.startswith("key_get_new_bro_list"):
+        eholandbot.answer_callback_query(callback_data.id, 'Грузим списки...')
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        get_new_bro_list(callback_data)
+    elif callback_data.data.startswith("key_list_user_event"):
+        eholandbot.answer_callback_query(callback_data.id, 'Грузим списки..., но фича в процессе', show_alert=True)
+        eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+
 
     else: eholandbot.send_message(callback_data.from_user.id, 'Я этому еще не обучен...')
 
 """"
-key_list_event
+key_list_event  - готово
 key_list_user_event
-key_get_new_bro_list
+key_get_new_bro_list - готово
 key_new_event - готово
 key_back
+
+key_registration key_registration/{club_id}/{event_id}  - готово
+key_cancel_registration  - готово
+key_show_user_event   - готово
+key_delete_event  - готово
 
 """
 def event_menu(callback_data):
     club_id = callback_data.data.split('/')[2]
     event_id = callback_data.data.split('/')[1]
+    telegram_id = callback_data.from_user.id
+    rank = SQLite_function.get_rank_for_event(telegram_id, club_id)
+    print(rank[0][1])
+    reg_info = SQLite_function.get_reg_info(telegram_id, event_id)
+    print(reg_info)
+    eholandbot.send_message(callback_data.from_user.id, f"Вам доступны следующие действия для этого мероприятия:",
+                            reply_markup=keyboard_function.one_event_menu(rank, reg_info, event_id))
 # Для данного шага нужен статус пользователя из таблицы User_rank
 # и есть ли user_id пользователя в таблице user_event с требуемым event_id: если есть до клавиша отмены регистрации, если нет, то клавиша зарегестрироваться
 #event_keyboard/49/1
@@ -269,6 +316,13 @@ def trener_notificatipon(club_id):
             eholandbot.send_message(trener[0], text=f'Поступила заявка от {new_bro[1]} {new_bro[2]} \n {new_bro[3]}',
                                 reply_markup=keyboard_function.new_bro_approve(new_bro[0], club_id, new_bro[4]))
 
+def get_new_bro_list(callback_data):
+    club_id = callback_data.data.split("/")[1]
+    new_bro_list = SQLite_function.get_new_bro_list(club_id)
+    print(new_bro_list)
+    for new_bro in new_bro_list:
+            eholandbot.send_message(callback_data.from_user.id, text=f'Поступила заявка от {new_bro[1]} {new_bro[2]} \n {new_bro[3]}',
+                                reply_markup=keyboard_function.new_bro_approve(new_bro[0], club_id, new_bro[4]))
 
 
 eholandbot.infinity_polling(2)

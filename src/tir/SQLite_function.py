@@ -144,6 +144,119 @@ def get_rank(telegram_id):
         print(f"The error '{e}' occurred")
 
 
+def get_rank_for_event(telegram_id, club_id):
+    connection = create_connection(DataBasePath)
+    script = f'''
+    select rank_id, rank_name, club_id, club_name 
+    from rank
+    inner join user_rank USING (rank_id)
+    inner join user USING (user_id)
+    inner JOIN club using (club_id)
+    where telegram_id={telegram_id} and club_id = {club_id}
+    '''
+    cursor = connection.cursor()
+    rank = None
+    try:
+        cursor.execute(script)
+        rank = cursor.fetchall()
+        return rank
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def get_reg_info(telegram_id, event_id):
+    connection = create_connection(DataBasePath)
+    script = f'''
+select * from user_event
+inner join user using (user_id)
+WHERE telegram_id ={telegram_id} and event_id= {event_id}
+    '''
+    cursor = connection.cursor()
+    reg_info = None
+    try:
+        cursor.execute(script)
+        reg_info = cursor.fetchall()
+        return reg_info
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+
+def show_user_event(event_id):
+    connection = create_connection(DataBasePath)
+    script = f'''
+select name, surname, car_info
+from user
+inner JOIN user_event USING (user_id)
+WHERE event_id={event_id}
+     '''
+    cursor = connection.cursor()
+    user_event = None
+    try:
+        cursor.execute(script)
+        user_event = cursor.fetchall()
+        return user_event
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+
+def cancel_registration(telegram_id, club_id, event_id):
+    connection = create_connection(DataBasePath)
+    cursor = connection.cursor()
+    result = None
+    cancel_script = f"""
+DELETE FROM user_event
+WHERE user_id=
+(select user_id from user where telegram_id={telegram_id})
+ and event_id={event_id}"""
+    try:
+        with connection:
+            cursor.execute(cancel_script)
+        print(cursor.lastrowid)
+        # result = cursor.
+        return result
+
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def registration(telegram_id, club_id, event_id):
+    connection = create_connection(DataBasePath)
+    cursor = connection.cursor()
+    result = None
+    cancel_script = f"""
+            INSERT INTO user_event (user_id, event_id)
+            VALUES ((select user_id from user where telegram_id={telegram_id}), "{event_id}")
+            """
+    try:
+        with connection:
+            cursor.execute(cancel_script)
+        print(cursor.lastrowid)
+        # result = cursor.
+        return result
+
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def delete_event(telegram_id, club_id, event_id):
+    connection = create_connection(DataBasePath)
+    cursor = connection.cursor()
+    result = None
+    cancel_script = f"""
+DELETE FROM event
+WHERE club_id={club_id} and event_id={event_id}
+            """
+    try:
+        with connection:
+            cursor.execute(cancel_script)
+        print(cursor.lastrowid)
+        # result = cursor.
+        return result
+
+    except Error as e:
+        print(f"The error '{e}' occurred")
 
 # Создание регистрируемого пользователя после получения информации об имени
 def create_user(message):  # По идее, универсальная функция под update, insert

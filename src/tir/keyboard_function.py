@@ -5,7 +5,7 @@ import SQLite_function
 
 def phone_keyboard():
     phone_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    phone_keyboard.add(types.KeyboardButton(text="Нажмите на кнопку", request_contact=True))
+    phone_keyboard.add(types.KeyboardButton(text="Отправить номер телефона", request_contact=True))
     return phone_keyboard
 
 
@@ -31,7 +31,7 @@ def event_keyboard(event_list):
     # SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
     print(event_list)
     event_keyboard = types.InlineKeyboardMarkup()
-    event_keyboard.add(types.InlineKeyboardButton(text="Записаться", callback_data=f'event_keyboard/{event_list[7]}/{event_list[8]}'))
+    event_keyboard.add(types.InlineKeyboardButton(text="Выбрать", callback_data=f'event_keyboard/{event_list[7]}/{event_list[8]}'))
     return event_keyboard
 
 def club_trener(event_id):
@@ -81,7 +81,7 @@ def keyboard_main(rank):
 
     if rank[0][1] == 'admin':
         keyboard.add(key_list_event)
-        keyboard.add(key_list_user_event, key_get_new_bro_list)
+        keyboard.add(key_get_new_bro_list)
         keyboard.add(key_new_event)
         keyboard.add(key_back)
     elif rank[0][1] == 'trener':
@@ -91,7 +91,27 @@ def keyboard_main(rank):
     elif rank[0][1] == 'strelok':
         keyboard.add(key_list_event)
         keyboard.add(key_back)
-        print('strelok_i am there')
     else:
         keyboard.add(key_back)
+    return keyboard
+
+
+def one_event_menu(rank, reg_info, event_id):
+    keyboard = types.InlineKeyboardMarkup()
+    key_registration = types.InlineKeyboardButton(text='Принять участие',
+                                                  callback_data=f'key_registration/{rank[0][2]}/{event_id}')
+    key_cancel_registration = types.InlineKeyboardButton(text='Отмена участия',
+                                                         callback_data=f'key_cancel_registration/{rank[0][2]}/{event_id}')
+    key_show_user_event = types.InlineKeyboardButton(text='Показать список участников',
+                                                     callback_data=f'key_show_user_event/{event_id}')
+    key_delete_event = types.InlineKeyboardButton(text='Отмена мероприятия',
+                                                  callback_data=f'key_delete_event/{event_id}')
+
+    if len(reg_info) == 0:
+        keyboard.add(key_registration)
+    else:
+        keyboard.add(key_cancel_registration)
+    if rank[0][1] == 'trener' or rank[0][1] == 'admin':
+        keyboard.add(key_show_user_event)
+        keyboard.add(key_delete_event)
     return keyboard
