@@ -45,7 +45,7 @@ def get_surname(message, data_user):
     data_user[2] = message.text
     print(data_user)
     SQLite_function.update_user(message.from_user.id, surname=message.text, phone=None, car_info=None, email=None)
-    phone = eholandbot.send_message(chat_id=message.chat.id, text="""Укажите Ваш номер телефона.\nДля этого нажмите на кнопку "Отправить номер телефона" внизу экрана""", reply_markup=keyboard_function.phone_keyboard())
+    phone = eholandbot.send_message(chat_id=message.chat.id, text="""Укажите Ваш номер телефона.\nДля этого нажмите на кнопку "Отправить номер телефона" внизу экрана⬇""", reply_markup=keyboard_function.phone_keyboard())
     eholandbot.register_next_step_handler(phone, get_phone, data_user)
 
 
@@ -158,24 +158,6 @@ def create_event_place_keyboard(message):  # Набросок клавиатур
     print(place_list)
     eholandbot.send_message(message.from_user.id, "Выберите место проведения тренировки:",
                             reply_markup=keyboard_function.place_keyboard(club_id, place_list))
-"""#
-#    connection = create_connection(path)
-#    telegram_id = message.from_user.id
-    #    #    registration_script = f"
-    #                INSERT INTO events (event_creator_id, date)
-    #                VALUES ((select user_id from user where telegram_id={telegram_id}), "{date_event}");
-                "
-    print(registration_script)
-    create_event = execute_insert_query(connection, registration_script)
-    print(create_event)
-#    script = "select * from pleace"
-    result = execute_read_query(connection, script)
-    n = len(result)
-    keyboard = types.InlineKeyboardMarkup()
-    for i in range(0, n):
-        keyboard.add(types.InlineKeyboardButton(text=f'{result[i][1]}', callback_data=f'pleace_{result[i][0]}'))
-        print(result[i][1])
-"""
 
 @eholandbot.callback_query_handler(func=lambda callback_data: True)  # Может быть только один
 def work_with_keyboard(callback_data):
@@ -239,6 +221,11 @@ def work_with_keyboard(callback_data):
     elif callback_data.data.startswith("key_delete_event"):
         eholandbot.answer_callback_query(callback_data.id, 'Тренировка отменена', show_alert=True)
         eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
+        user_list = SQLite_function.show_user_event(callback_data.data.split("/")[2])
+        event_info = SQLite_function.get_event_info(callback_data.data.split("/")[2])
+        # date, time, place_name, name, surname, category_name, comment, event_id, club_id
+        for item in user_list:
+            eholandbot.send_message(chat_id=item[3], text=f'Тренировка {event_info[0][0]} в категории {event_info[0][5]} на территории {event_info[0][2]} отменена, будте внимательны!')
         SQLite_function.delete_event(callback_data.from_user.id, callback_data.data.split("/")[1],
                                             callback_data.data.split("/")[2])
     elif callback_data.data.startswith("key_show_user_event"):

@@ -42,6 +42,29 @@ WHERE club_id={club_id} and date>='{date.today()}'
     except Error as e:
         print(f"The error '{e}' occurred")
 
+
+def get_event_info(event_id):
+    connection = create_connection(DataBasePath)
+    script = f"""
+SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
+from event
+inner join place USING (place_id)
+inner JOIN user on event.trener_id=user.user_id
+inner JOIN category using (category_id)
+WHERE event_id={event_id}
+"""
+    print(date.today())
+    print(script)
+    cursor = connection.cursor()
+    event_info = None
+    try:
+        cursor.execute(script)
+        event_info = cursor.fetchall()
+        return event_info
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
 def create_event(telegram_id, place_id, club_id):
     connection = create_connection(DataBasePath)
     cursor = connection.cursor()
@@ -185,7 +208,7 @@ WHERE telegram_id ={telegram_id} and event_id= {event_id}
 def show_user_event(event_id):
     connection = create_connection(DataBasePath)
     script = f'''
-select name, surname, car_info
+select name, surname, car_info,telegram_id
 from user
 inner JOIN user_event USING (user_id)
 WHERE event_id={event_id}
@@ -458,28 +481,3 @@ WHERE event_id={event_id} AND rank_name in ("trener", "admin")
         return trener_event_list
     except Error as e:
         print(f"The error '{e}' occurred")
-
-
-# Не актуально! Формирует запрос в БД для определения ранга пользователя,
-def check_rank(user_id):  # Тянет из БД ранг стрелка: админ, тренер, стрелок
-    check_rank = f"""
-    select rank_name from
-    rank
-    inner join user using (rank_id)
-    where telegram_id='{user_id}'
-    """
-    return check_rank
-
-
-# Не актуально! Функция SELECT из БД
-def execute_read_query(connection, query):  # По идее, универсальная функция под SELECT
-    cursor = connection.cursor()
-    result = None
-    try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        return result
-    except Error as e:
-        print(f"The error '{e}' occurred")
-
-
