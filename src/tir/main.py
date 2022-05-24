@@ -232,10 +232,15 @@ def work_with_keyboard(callback_data):
         eholandbot.answer_callback_query(callback_data.id, 'Грузим списки...')
         eholandbot.delete_message(chat_id=callback_data.message.chat.id, message_id=callback_data.message.message_id)
         user_event = SQLite_function.show_user_event(callback_data.data.split("/")[1])
-        print(user_event)
+        user_rank = callback_data.data.split("/")[2]
+        print("key_show_user_event", callback_data.data)
         text = "Список участников"
-        for item in user_event:
-            text += f"""\n{item[0]} {item[1]} {item[2]}"""
+        if user_rank =="admin":
+            for item in user_event:
+                text += f"""\n{item[0]} {item[1]} {item[2]}"""
+        else:
+            for item in user_event:
+                text += f"""\n{item[0]} {item[1]}"""
         print(text)
         eholandbot.send_message(callback_data.from_user.id, text=f'{text}')
     elif callback_data.data.startswith("key_get_new_bro_list"):
@@ -266,12 +271,14 @@ def event_menu(callback_data):
     club_id = callback_data.data.split('/')[2]
     event_id = callback_data.data.split('/')[1]
     telegram_id = callback_data.from_user.id
+    event_info = SQLite_function.get_event_info(event_id)
     rank = SQLite_function.get_rank_for_event(telegram_id, club_id)
     print(rank[0][1])
     reg_info = SQLite_function.get_reg_info(telegram_id, event_id)
     print(reg_info)
-    eholandbot.send_message(callback_data.from_user.id, f"Вам доступны следующие действия для этого мероприятия:",
+    eholandbot.send_message(callback_data.from_user.id, f"Для тренировки {event_info[0][0]} на территории {event_info[0][2]} в дисциплине {event_info[0][5]} Вам доступны следующие действия:",
                             reply_markup=keyboard_function.one_event_menu(rank, reg_info, event_id))
+    # SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
 # Для данного шага нужен статус пользователя из таблицы User_rank
 # и есть ли user_id пользователя в таблице user_event с требуемым event_id: если есть до клавиша отмены регистрации, если нет, то клавиша зарегестрироваться
 #event_keyboard/49/1
@@ -285,10 +292,15 @@ def show_event_list(callback_data):
     print("telegram_id", telegram_id)
     print("club_id", club_id)
     for item in event_list:
-        eholandbot.send_message(callback_data.from_user.id, f"Тренировка в {item[2]} {item[0]} {item[1]} "
-                                                            f"\n Тренер: {item[4]} в дисциплине {item[5]}"
-                                                            f"\n Комментарий: {item[6]}",
-                                reply_markup=keyboard_function.event_keyboard(item))
+        if item[6] == "-":
+            eholandbot.send_message(callback_data.from_user.id, f"Тренировка в {item[2]} {item[0]} {item[1]} "
+                                                                f"\n Тренер: {item[4]} в дисциплине {item[5]}",
+                                    reply_markup=keyboard_function.event_keyboard(item))
+        else:
+            eholandbot.send_message(callback_data.from_user.id, f"Тренировка в {item[2]} {item[0]} {item[1]} "
+                                                                f"\n Тренер: {item[4]} в дисциплине {item[5]}"
+                                                                f"\n Комментарий: {item[6]}",
+                                    reply_markup=keyboard_function.event_keyboard(item))
 
     # SELECT date, time, place_name, name, surname, category_name, comment, event_id, club_id
 

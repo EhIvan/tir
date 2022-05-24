@@ -86,7 +86,7 @@ def keyboard_main(rank):
         keyboard.add(key_back)
     elif rank[0][1] == 'trener':
         keyboard.add(key_list_event)
-        keyboard.add(key_get_new_bro_list, key_new_event)
+#        keyboard.add(key_get_new_bro_list, key_new_event)
         keyboard.add(key_back)
     elif rank[0][1] == 'strelok':
         keyboard.add(key_list_event)
@@ -97,13 +97,14 @@ def keyboard_main(rank):
 
 
 def one_event_menu(rank, reg_info, event_id):
+    print("rank", rank)
     keyboard = types.InlineKeyboardMarkup()
     key_registration = types.InlineKeyboardButton(text='Принять участие',
                                                   callback_data=f'key_registration/{rank[0][2]}/{event_id}')
     key_cancel_registration = types.InlineKeyboardButton(text='Отмена участия',
                                                          callback_data=f'key_cancel_registration/{rank[0][2]}/{event_id}')
     key_show_user_event = types.InlineKeyboardButton(text='Показать список участников',
-                                                     callback_data=f'key_show_user_event/{event_id}')
+                                                     callback_data=f'key_show_user_event/{event_id}/{rank[0][1]}')
     key_delete_event = types.InlineKeyboardButton(text='Отмена мероприятия',
                                                   callback_data=f'key_delete_event/{rank[0][2]}/{event_id}')
 
@@ -111,7 +112,7 @@ def one_event_menu(rank, reg_info, event_id):
         keyboard.add(key_registration)
     else:
         keyboard.add(key_cancel_registration)
-    if rank[0][1] == 'trener' or rank[0][1] == 'admin':
-        keyboard.add(key_show_user_event)
+    if rank[0][1] == 'admin':
         keyboard.add(key_delete_event)
+    keyboard.add(key_show_user_event)
     return keyboard
