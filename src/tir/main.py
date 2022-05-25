@@ -1,10 +1,13 @@
+import config
 import telebot
 from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
 from datetime import datetime, date, time
-eholandbot = telebot.TeleBot('5390922879:AAGQPYKFnmp1GzxDUUoHV22Vk9GnbuohoGw')
+#config.token
+eholandbot = telebot.TeleBot(config.token)
 import SQLite_function
 #import main_function
 import keyboard_function
+
 
 @eholandbot.message_handler(commands=['help'])
 def send_welcome(message):
